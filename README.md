@@ -2,7 +2,7 @@
 
 LaTeX easy-to-use template for tech resume.
 
-[embed]resume.pdf[/embed]
+![Resume Preview](resume.jpg)
 
 ## Getting Started
 
