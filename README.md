@@ -1,6 +1,6 @@
-# Resume
+# Resume LaTeX template
 
-LaTeX easy-to-use template for tech resume.
+> LaTeX easy-to-use template for tech resume.
 
 ![Resume Preview](resume.jpg)
 
