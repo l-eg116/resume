@@ -2,7 +2,7 @@
 
 LaTeX easy-to-use template for tech resume.
 
-![Resume Preview](resume.jpg)
+[embed]resume.pdf[/embed]
 
 ## Getting Started
 
@@ -23,6 +23,8 @@ git clone git@github.com:MorganKryze/Resume-LaTeX.git
 ### Usage
 
 Once installed, it's pretty much it, just edit the `resume.tex` file to your liking and compile it automatically with LaTeX workshop. the outcome will be a `resume.pdf` file.
+
+Then enter in the settings > pages : select "from branch", select "master", and select "/root". Now at every push, the pdf will be updated on your own github page [preview](https://morgankryze.github.io/Resume-LaTeX/).
 
 ### Converting
 
