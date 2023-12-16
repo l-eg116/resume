@@ -1,15 +1,15 @@
-name: Docs
+name: CI
 
 on:
-  workflow_run:
-    workflows: ["CI"]
-    types:
-      - completed
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
 
 jobs:
   build:
+
     runs-on: ubuntu-latest
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
 
     steps:
     - uses: actions/checkout@v2
@@ -21,11 +21,6 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install -r src/requirements.txt
-    - name: Run convert.py
+    - name: Run tests
       run: |
-        python src/convert.py
-    - name: Generate documentation
-      uses: peaceiris/actions-gh-pages@v3
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./docs
+        python -m unittest testing/tests.py
