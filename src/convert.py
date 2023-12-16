@@ -47,9 +47,7 @@ def merge_pdfs(pdfs: list, new_path: str) -> None:
 
 
 if __name__ == "__main__":
-    pdf_to_jpg("../resume-fr/resume.pdf", "../resume-fr/resume")
-    pdf_to_jpg("../resume-en/resume.pdf", "../resume-en/resume")
+    pdf_to_jpg("resume-fr/resume.pdf", "resume-fr/resume")
+    pdf_to_jpg("resume-en/resume.pdf", "resume-en/resume")
 
-    merge_pdfs(
-        ["../resume-fr/resume.pdf", "../resume-en/resume.pdf"], "../docs/pdf/resume.pdf"
-    )
+    merge_pdfs(["resume-fr/resume.pdf", "resume-en/resume.pdf"], "docs/pdf/resume.pdf")
