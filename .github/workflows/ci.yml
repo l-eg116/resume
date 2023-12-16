@@ -42,6 +42,8 @@ jobs:
     - name: Run convert.py
       run: |
         python src/convert.py
+    - name: List docs directory
+      run: ls -l ./docs
     - name: Generate documentation
       uses: peaceiris/actions-gh-pages@v3
       with:
