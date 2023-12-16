@@ -1,6 +1,6 @@
 # Resume LaTeX template
 
-> LaTeX easy-to-use template for tech resume.
+> LaTeX easy-to-use template for tech resume that auto-build on a github page.
 
 ![Resume Preview](resume-en/resume.jpg)
 
@@ -42,7 +42,7 @@ Finally, you can run the script with:
 python convert.py
 ```
 
-This will convert your resume.pdf to a resume.jpg file.
+This will convert your resume.pdf to a resume.jpg file (this is the manual way, you can also use the script to automatically convert your resume.pdf to a resume.jpg file at every push).
 
 ## Fork of
 
