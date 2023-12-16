@@ -10,8 +10,8 @@ from src.convert import pdf_to_jpg
 class TestConverter(unittest.TestCase):
     def test_convert_happy_path_to_jpg(self):
         # Arrange
-        path_pdf = "../resume-en/resume.pdf"
-        path_jpg = "../resume-en/resume"
+        path_pdf = "resume-en/resume.pdf"
+        path_jpg = "resume-en/resume"
 
         # Act
         pdf_to_jpg(path_pdf, path_jpg)
@@ -22,8 +22,8 @@ class TestConverter(unittest.TestCase):
 
     def test_convert_nonexistent_pdf(self):
         # Arrange
-        path_pdf = "../nonexistent.pdf"
-        path_jpg = "../resume-en/resume"
+        path_pdf = "nonexistent.pdf"
+        path_jpg = "resume-en/resume"
 
         # Act and Assert
         with self.assertRaises(FileNotFoundError):
@@ -31,8 +31,8 @@ class TestConverter(unittest.TestCase):
 
     def test_convert_non_pdf_to_jpg(self):
         # Arrange
-        path_pdf = "../resume-en/resume.docx"
-        path_jpg = "../resume-en/resume"
+        path_pdf = "resume-en/resume.docx"
+        path_jpg = "resume-en/resume"
 
         # Act and Assert
         with self.assertRaises(ValueError):
