@@ -1,6 +1,7 @@
 import os
 from pdf2image import convert_from_path
 from PyPDF2 import PdfMerger
+import yaml
 
 
 def pdf_to_jpg(path_pdf: str, path_jpg: str) -> None:
@@ -46,8 +47,45 @@ def merge_pdfs(pdfs: list, new_path: str) -> None:
     merger.close()
 
 
-if __name__ == "__main__":
-    pdf_to_jpg("resume-fr/resume.pdf", "resume-fr/resume")
-    pdf_to_jpg("resume-en/resume.pdf", "resume-en/resume")
+def load_options(yaml_path: str):
+    """
+    Load options from a YAML file and perform several checks to ensure the validity of the file and its contents.
 
-    merge_pdfs(["resume-fr/resume.pdf", "resume-en/resume.pdf"], "docs/pdf/resume.pdf")
+    Args:
+        yaml_path (str): The path to the YAML file.
+
+    Returns:
+        dict: The loaded options as a dictionary.
+
+    Raises:
+        FileNotFoundError: If the YAML file does not exist at the path provided.
+        ValueError: If the input file is not a YAML file, the YAML file is empty, or the 'languages' key is not a non-empty list.
+    """
+    if not yaml_path.endswith(".yml") and not yaml_path.endswith(".yaml"):
+        raise ValueError("The input file must be a YAML file.")
+    if not os.path.exists(yaml_path):
+        raise FileNotFoundError("The YAML file does not exist at the path provided.")
+    with open(yaml_path, "r") as file:
+        options = yaml.safe_load(file)
+        if options is None:
+            raise ValueError("The YAML file is empty.")
+        if (
+            "languages" not in options
+            or not isinstance(options["languages"], list)
+            or len(options["languages"]) == 0
+        ):
+            raise ValueError("The 'languages' key must be a non-empty list.")
+        return options
+
+
+if __name__ == "__main__":
+    pdf_to_jpg("src/resume-fr/resume.pdf", "src/resume-fr/resume")
+    pdf_to_jpg("src/resume-en/resume.pdf", "src/resume-en/resume")
+    languages = load_options("src/options.yml")["languages"]
+    pdfs_to_merge = []
+    if "french" in languages:
+        pdfs_to_merge.append("src/resume-fr/resume.pdf")
+    if "english" in languages:
+        pdfs_to_merge.append("src/resume-en/resume.pdf")
+    merge_pdfs(pdfs_to_merge, "docs/pdf/resume.pdf")
+    print("Done!")

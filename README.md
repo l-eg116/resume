@@ -24,11 +24,16 @@ git clone git@github.com:MorganKryze/Resume-LaTeX.git
 
 Once installed, it's pretty much it, just edit the `resume.tex` file to your liking and compile it automatically with LaTeX workshop. the outcome will be a `resume.pdf` file.
 
+> If you encounter errors in the compilation, check that you have correctly installed all the libraries needed.
+
 Then enter in the settings > pages : select "from branch", select "gh-pages" (create the branch if it does not exist), and select "/root". Now at every push, the pdf will be updated on your own github page [preview](https://morgankryze.github.io/Resume-LaTeX/).
 
-Arguments:
+If you want to only one language or two languages, you can update the `options.yml` file like this (only english) :
 
-Work in progress...
+```yml
+languages:
+  - english
+```
 
 ### Converting
 
