@@ -1,7 +1,7 @@
 %-------------------------
 % Resume in Latex
-% Author : Jake Gutierrez
-% Based off of: https://github.com/sb2nov/resume
+% Author : Morgan Kryze
+% Based off of: https://github.com/jakegut/resume
 % License : MIT
 %------------------------
 
@@ -15,6 +15,7 @@
 \usepackage{verbatim}
 \usepackage{enumitem}
 \usepackage[hidelinks]{hyperref}
+\usepackage{bookmark}
 \usepackage{fancyhdr}
 \usepackage[english]{babel}
 \usepackage{tabularx}
@@ -32,7 +33,7 @@
 % \usepackage{CormorantGaramond}
 % \usepackage{charter}
 
-
+\setlength{\footskip}{5pt}
 \pagestyle{fancy}
 \fancyhf{} % clear all header and footer fields
 \fancyfoot{}
@@ -120,11 +121,11 @@
 
 
 %-----------EDUCATION-----------
-\section{Éducation}
+\section{Formation}
   \resumeSubHeadingListStart
     \resumeSubheading
       {École Supérieure d'Ingénieurs Léonard de Vinci}{La Défense, Paris}
-      {Ingénieur généraliste, électif Cryptographie}{Sept. 2021 -- Aujourd'hui}
+      {Ingénieur généraliste, majeure Cloud Computing \& Cybersécurité}{Sept. 2021 -- Aujourd'hui}
     \resumeSubheading
       {Lycée Sainte Jeanne Élisabeth}{Paris}
       {Série générale, Section Européenne anglais, Maths expertes}{Sept. 2018 -- Juin 2021}
@@ -162,57 +163,47 @@
         \resumeItem{Définition de cahiers des charges pour les projets sur l'année 2022-2023}
         \resumeItem{Recrutements, sélections et suivi des projets tout au long de l'année}
       \resumeItemListEnd
-% -----------Multiple Positions Heading-----------
-%    \resumeSubSubheading
-%     {Software Engineer I}{Oct 2014 - Sep 2016}
-%     \resumeItemListStart
-%        \resumeItem{Apache Beam}
-%          {Apache Beam is a unified model for defining both batch and streaming data-parallel processing pipelines}
-%     \resumeItemListEnd
-%    \resumeSubHeadingListEnd
-%-------------------------------------------
   \resumeSubHeadingListEnd
-
+%-------------------------------------------
 
 %-----------PROJECTS-----------
 \section{Projets}
     \resumeSubHeadingListStart
       \resumeProjectHeading
-          {\href{https://github.com/THE-TRAVELERS/TRAVELERS-HUB}{\textbf{TRAVELERS}} $|$ \emph{Python, FastAPI, Git, Dart, Flutter}}{Sept. 2022 -- Aujourd'hui}
+          {\href{https://github.com/THE-TRAVELERS/TRAVELERS-HUB}{\textbf{TRAVELERS}} $|$ \emph{Python, FastAPI, git, Dart, Flutter}}{Sept. 2022 -- Aujourd'hui}
           \resumeItemListStart
             \resumeItem{Création d'un rover lunaire tout terrain dans le cadre d'un projet associatif de 6 à 8 étudiants}
             \resumeItem{Contrôle du système électronique des moteurs, drivers, capteurs et télécommunications}
             \resumeItem{Développement d'une application de contrôle et de visualisation des données du rover}
           \resumeItemListEnd
       \resumeProjectHeading
-          {\href{https://github.com/KodeLab-fr/ExpenseTracker}{\textbf{Application polyvalente}} $|$ \emph{Dart, Python, SQL, FastAPI, Git, Docker}}{Juin 2023 -- Aujourd'hui}
+          {\href{https://github.com/KodeLab-fr/ExpenseTracker}{\textbf{Assistant FabLab}} $|$ \emph{Dart, Python, SQL, FastAPI, git, Docker}}{Juin 2023 -- Aujourd'hui}
           \resumeItemListStart
             \resumeItem{Création avec Thomas DERUDDER d'un pilote d'application cross-plateform et polyvalente pour FabLab}
             \resumeItem{Gestion d'utilisateurs avec chiffrage des données}
             \resumeItem{Gestion de stocks, état de machines, événements, formulaires, etc.}
           \resumeItemListEnd
       \resumeProjectHeading
-          {\href{https://github.com/MorganKryze/ConsoleAppVisuals}{\textbf{Librairie : ConsoleAppVisuals}} $|$ \emph{Csharp, Bash, Git, NuGet, GitHub Packages}}{Sept. 2023 -- Nov.2023}
+          {\href{https://github.com/MorganKryze/ConsoleAppVisuals}{\textbf{ConsoleAppVisuals}} $|$ \emph{C\#, Bash, git, NuGet, GitHub Packages}}{Sept. 2023 -- Nov.2023}
           \resumeItemListStart
-            \resumeItem{Création de librairie Csharp facile d'utilisation pour afficher des fonctionnalités graphiques dans la console (sélecteurs, barres de progression, etc.)}
-            \resumeItem{Automatisation du déploiement de la documentation à l'aide de GitHub Actions et DocFX }
-            \resumeItem{Publication de la librairie sur GitHub Packages et NuGet avec plus de 800 téléchargements}
+            \resumeItem{Création de librairie C\# facile d'utilisation pour afficher des fonctionnalités graphiques dans la console (sélecteurs, barres de progression, etc.)}
+            \resumeItem{Automatisation du déploiement de la documentation  et des tests à l'aide de GitHub Actions et DocFX}
+            \resumeItem{Publication de la librairie sur GitHub Packages et NuGet avec plus de 2k téléchargements}
           \resumeItemListEnd
     \resumeSubHeadingListEnd
+%-------------------------------------------
 
 %-----------PROGRAMMING SKILLS-----------
 \section{Compétences Techniques}
  \begin{itemize}[leftmargin=0.15in, label={}]
     \small{\item{
-     \textbf{Langues}{: Français (langue maternelle), Anglais B2-C1 (TOEFL : 587, TOEIC : 890)} \\
-     \textbf{Langages informatiques}{: Csharp, C++, Dart, Python, SQL} \\
+     \textbf{Langues}{: Français (langue maternelle), Anglais courant B2-C1 (TOEFL : 587, TOEIC : 890)} \\
+     \textbf{Langages de programmation}{: C\#, C++, Dart, Python, Bash, SQL} \\
      \textbf{Frameworks}{: Flutter (GetX), FastAPI, Arduino} \\
-     \textbf{Librairies}{: pandas, NumPy, FastAPI, get, dartz, ConsoleAppVisuals} \\
-     \textbf{Outils de développement}{: GitHub, Docker, VS Code, Visual Studio, Bash, Arduino IDE, XCode, UnityHub} \\
-     \textbf{Logiciels}{: Notion, Arc, Fusion360, KiCad, Thunderbird, UTM, Suite Office}
+     \textbf{Bibliothèques}{: pandas, NumPy, FastAPI, get, dartz, ConsoleAppVisuals} \\
+     \textbf{Outils de développement}{: GitHub, DockerHub, VS Code, Visual Studio, Arduino IDE, XCode, UnityHub} \\
+     \textbf{Logiciels généraux}{: Notion, Arc, Fusion360, KiCad, Thunderbird, UTM, Suite Office}
     }}
  \end{itemize}
-
-
 %-------------------------------------------
 \end{document}
