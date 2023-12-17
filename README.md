@@ -2,7 +2,7 @@
 
 > LaTeX easy-to-use template for tech resume that auto-build on a github page.
 
-![Resume Preview](resume-en/resume.jpg)
+![Resume Preview](src/resume-en/resume.jpg)
 
 ## Getting Started
 
