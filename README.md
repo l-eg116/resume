@@ -3,10 +3,8 @@
 > LaTeX easy-to-use template for tech resume that auto-build on a github page.
 
 ![Resume Preview](src/resume-en/resume.jpg)
-*Preview of the resume generated*
 
 ![Resume Preview](qr-code.png)
-*Preview of the qr-code generated*
 
 ## Getting Started
 
