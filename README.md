@@ -3,6 +3,10 @@
 > LaTeX easy-to-use template for tech resume that auto-build on a github page.
 
 ![Resume Preview](src/resume-en/resume.jpg)
+*Preview of the resume generated*
+
+![Resume Preview](qr-code.png)
+*Preview of the qr-code generated*
 
 ## Getting Started
 
@@ -33,6 +37,12 @@ If you want to only one language or two languages, you can update the `options.y
 ```yml
 languages:
   - english
+```
+
+To create a qr-code, you can call the `qr-code.py` file:
+
+```bash
+python src/generate-qr-code.py
 ```
 
 ### Converting
