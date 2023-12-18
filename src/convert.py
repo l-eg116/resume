@@ -24,8 +24,8 @@ def pdf_to_jpg(path_pdf: str, path_jpg: str) -> None:
     if not path_pdf.endswith(".pdf"):
         msg = "The input file must be a PDF file."
         raise ValueError(msg)
-    if not Path.exists(path_pdf):
-        msg = "The input file does not exist at the path provided."
+    if not Path(path_pdf).exists():
+        msg = f"The PDF file {path_pdf} does not exist."
         raise FileNotFoundError(msg)
 
     pages = convert_from_path(path_pdf)
@@ -78,8 +78,8 @@ def load_options(yaml_path: str) -> dict:
     if not yaml_path.endswith(".yml") and not yaml_path.endswith(".yaml"):
         msg = "The input file must be a YAML file."
         raise ValueError(msg)
-    if not Path.exists(yaml_path):
-        msg = "The YAML file does not exist at the path provided."
+    if not Path(yaml_path).exists():
+        msg = f"The YAML file {yaml_path} does not exist."
         raise FileNotFoundError(msg)
     with Path.open(yaml_path) as file:
         options = yaml.safe_load(file)

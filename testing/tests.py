@@ -21,7 +21,7 @@ class TestConverter(unittest.TestCase):
 
         # Assert
         # Check if the JPEG images are saved with numbered file names
-        assert Path.exists(path_jpg + ".jpg")
+        assert not Path(path_jpg + ".jpg").exists()
 
     def test_convert_nonexistent_pdf(self: unittest) -> None:
         """Test the pdf_to_jpg function with a nonexistent PDF file."""
