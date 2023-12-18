@@ -1,24 +1,32 @@
-import os
+from pathlib import Path
+
+import yaml
 from pdf2image import convert_from_path
 from PyPDF2 import PdfMerger
-import yaml
 
 
 def pdf_to_jpg(path_pdf: str, path_jpg: str) -> None:
-    """
-    Converts a PDF file to a series of JPEG images.
+    """Convert a PDF file to a series of JPEG images.
 
     Args:
+    ----
         path_pdf (str): The path of the PDF file to be converted to JPEG images.
-        path_jpg (str): The path and base file name for the JPEG images. If the PDF has multiple pages, each page will be saved as a separate image with a numbered file name. If the PDF has only one page, the image will be saved with the specified file name.
+        path_jpg (str): The path and base file name for the JPEG images. If the PDF has
+        multiple pages, each page will be saved as a separate image with a numbered
+        file name. If the PDF has only one page, the image will be saved with the
+        specified file name.
 
     Returns:
-        None: The function does not return any value, but it saves the PDF pages as JPEG images.
+    -------
+        None: The function does not return any value, but it saves the
+        PDF pages as JPEG images.
     """
     if not path_pdf.endswith(".pdf"):
-        raise ValueError("The input file must be a PDF file.")
-    if not os.path.exists(path_pdf):
-        raise FileNotFoundError("The input file does not exist at the path provided.")
+        msg = "The input file must be a PDF file."
+        raise ValueError(msg)
+    if not Path.exists(path_pdf):
+        msg = "The input file does not exist at the path provided."
+        raise FileNotFoundError(msg)
 
     pages = convert_from_path(path_pdf)
 
@@ -30,15 +38,18 @@ def pdf_to_jpg(path_pdf: str, path_jpg: str) -> None:
 
 
 def merge_pdfs(pdfs: list, new_path: str) -> None:
-    """
-    Merge multiple PDF files into a single PDF file.
+    """Merge multiple PDF files into a single PDF file.
 
     Args:
-        pdfs (list): A list of strings representing the paths of the PDF files to be merged.
+    ----
+        pdfs (list): A list of strings representing the paths of the PDF files
+        to be merged.
         new_path (str): A string representing the path of the merged PDF file.
 
     Returns:
-        None. The function does not return any value, but it creates a new PDF file by merging the input PDF files.
+    -------
+        None. The function does not return any value, but it creates a new
+        PDF file by merging the input PDF files.
     """
     merger = PdfMerger()
     for pdf in pdfs:
@@ -47,34 +58,41 @@ def merge_pdfs(pdfs: list, new_path: str) -> None:
     merger.close()
 
 
-def load_options(yaml_path: str):
-    """
-    Load options from a YAML file and perform several checks to ensure the validity of the file and its contents.
+def load_options(yaml_path: str) -> dict:
+    """Load options from a YAML file.
 
     Args:
+    ----
         yaml_path (str): The path to the YAML file.
 
     Returns:
+    -------
         dict: The loaded options as a dictionary.
 
     Raises:
+    ------
         FileNotFoundError: If the YAML file does not exist at the path provided.
-        ValueError: If the input file is not a YAML file, the YAML file is empty, or the 'languages' key is not a non-empty list.
+        ValueError: If the input file is not a YAML file, the YAML file is empty,
+        or the 'languages' key is not a non-empty list.
     """
     if not yaml_path.endswith(".yml") and not yaml_path.endswith(".yaml"):
-        raise ValueError("The input file must be a YAML file.")
-    if not os.path.exists(yaml_path):
-        raise FileNotFoundError("The YAML file does not exist at the path provided.")
-    with open(yaml_path, "r") as file:
+        msg = "The input file must be a YAML file."
+        raise ValueError(msg)
+    if not Path.exists(yaml_path):
+        msg = "The YAML file does not exist at the path provided."
+        raise FileNotFoundError(msg)
+    with Path.open(yaml_path) as file:
         options = yaml.safe_load(file)
         if options is None:
-            raise ValueError("The YAML file is empty.")
+            msg = "The YAML file is empty."
+            raise ValueError(msg)
         if (
             "languages" not in options
             or not isinstance(options["languages"], list)
             or len(options["languages"]) == 0
         ):
-            raise ValueError("The 'languages' key must be a non-empty list.")
+            msg = "The 'languages' key must be a non-empty list."
+            raise ValueError(msg)
         return options
 
 

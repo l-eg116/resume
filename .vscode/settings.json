@@ -1,4 +1,13 @@
 {
   "cSpell.enableFiletypes": ["!latex"],
-  "cSpell.words": ["jakegut", "pdfs"]
+  "cSpell.words": [
+    "colormasks",
+    "embeded",
+    "jakegut",
+    "moduledrawers",
+    "pdfs",
+    "putalpha",
+    "qrcode",
+    "styledpil"
+  ]
 }

@@ -1,14 +1,17 @@
-import os
 import sys
 import unittest
+from pathlib import Path
 
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
+sys.path.insert(0, Path.abspath(Path.join(Path.dirname(__file__), "..")))
 
-import src.convert as cv
+import src.convert as cv  # noqa: E402
 
 
 class TestConverter(unittest.TestCase):
-    def test_convert_happy_path_to_jpg(self):
+    """Test the functions in the convert.py module."""
+
+    def test_convert_happy_path_to_jpg(self: unittest) -> None:
+        """Test the pdf_to_jpg function with a valid PDF file."""
         # Arrange
         path_pdf = "src/resume-en/resume.pdf"
         path_jpg = "src/resume-en/resume"
@@ -18,9 +21,10 @@ class TestConverter(unittest.TestCase):
 
         # Assert
         # Check if the JPEG images are saved with numbered file names
-        assert os.path.exists(path_jpg + ".jpg")
+        assert Path.exists(path_jpg + ".jpg")
 
-    def test_convert_nonexistent_pdf(self):
+    def test_convert_nonexistent_pdf(self: unittest) -> None:
+        """Test the pdf_to_jpg function with a nonexistent PDF file."""
         # Arrange
         path_pdf = "nonexistent.pdf"
         path_jpg = "src/resume-en/resume"
@@ -29,7 +33,8 @@ class TestConverter(unittest.TestCase):
         with self.assertRaises(FileNotFoundError):
             cv.pdf_to_jpg(path_pdf, path_jpg)
 
-    def test_convert_non_pdf_to_jpg(self):
+    def test_convert_non_pdf_to_jpg(self: unittest) -> None:
+        """Test the pdf_to_jpg function with a non-PDF file."""
         # Arrange
         path_pdf = "src/resume-en/resume.docx"
         path_jpg = "src/resume-en/resume"
@@ -38,7 +43,8 @@ class TestConverter(unittest.TestCase):
         with self.assertRaises(ValueError):
             cv.pdf_to_jpg(path_pdf, path_jpg)
 
-    def test_valid_yaml_file(self):
+    def test_valid_yaml_file(self: unittest) -> None:
+        """Test the load_options function with a valid YAML file."""
         # Arrange
         yaml_path = "testing/resources/options-valid.yml"
 
@@ -49,7 +55,8 @@ class TestConverter(unittest.TestCase):
         assert isinstance(result, dict)
         assert len(result) > 0
 
-    def test_empty_yaml_file(self):
+    def test_empty_yaml_file(self: unittest) -> None:
+        """Test the load_options function with an empty YAML file."""
         # Arrange
         yaml_path = "testing/resources/options-empty.yml"
 
@@ -57,7 +64,8 @@ class TestConverter(unittest.TestCase):
         with self.assertRaises(ValueError):
             cv.load_options(yaml_path)
 
-    def test_invalid_yaml_file_path(self):
+    def test_invalid_yaml_file_path(self: unittest) -> None:
+        """Test the load_options function with a nonexistent YAML file."""
         # Arrange
         yaml_path = "invalid_path.yml"
 
@@ -65,7 +73,8 @@ class TestConverter(unittest.TestCase):
         with self.assertRaises(FileNotFoundError):
             cv.load_options(yaml_path)
 
-    def test_input_file_not_yaml_error(self):
+    def test_input_file_not_yaml_error(self: unittest) -> None:
+        """Test the load_options function with a non-YAML file."""
         # Arrange
         yaml_path = "invalid.txt"
 
