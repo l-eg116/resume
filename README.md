@@ -14,12 +14,12 @@ To use this template, you will need to have LaTeX installed on your system. If y
 
 Personally, I use LaTeX workshop extension for VSCode.
 
-### Installing
+### Install
 
 To use this template, you can either download the zip file or clone the repository:
 
 ```bash
-git clone git@github.com:MorganKryze/Resume-LaTeX.git
+git clone https://github.com/MorganKryze/Resume-LaTeX.git
 ```
 
 ### Usage
