@@ -41,7 +41,7 @@ jobs:
         pip install -r requirements.txt
     - name: Run convert.py
       run: |
-        python src/convert.py
+        python src/convert_and_merge.py
     - name: Generate documentation
       uses: peaceiris/actions-gh-pages@v3
       with:
