@@ -1,3 +1,8 @@
 languages:
   - english
   - french
+image_source: logo.jpg
+color_panel:
+  - 233
+  - 167
+  - 135

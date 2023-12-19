@@ -1,9 +1,29 @@
+import sys
+from pathlib import Path
+
 import PIL
 import qrcode
+import requests
+from load_yaml import load_options
 from PIL import Image, ImageDraw
 from qrcode.image.styledpil import StyledPilImage
 from qrcode.image.styles.colormasks import SolidFillColorMask
 from qrcode.image.styles.moduledrawers import RoundedModuleDrawer
+
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+
+
+# Constants
+DOWNLOADS_DIR = "src/downloads"
+ASSETS_DIR = "src/assets"
+
+OPTIONS_FILENAME = "options.yml"
+ROUNDED_LOGO_FILENAME = "rounded-logo.png"
+QR_CODE_FILENAME = "qr-code.png"
+LOGO_FILENAME_DEFAULT = "logo.jpg"
+CORNER_RADIUS = 100
+
+RESUME_URL = "https://morgankryze.github.io/Resume-LaTeX/"
 
 
 def add_corners(im: Image, rad: int) -> Image:
@@ -91,35 +111,85 @@ def style_outer_eyes(img: Image) -> Image:
     )  # bottom left eye
 
     return mask
-    return mask
+
+
+def fetch_image_from_remote(url: str) -> None:
+    """Fetch an image from a remote URL.
+
+    Args:
+    ----
+        url (str): The URL of the image to be fetched.
+
+    Returns:
+    -------
+        None
+    """
+    try:
+        response = requests.get(url, timeout=10)
+        with Path.open(f"{DOWNLOADS_DIR}/{LOGO_FILENAME_DEFAULT}", "wb") as f:
+            f.write(response.content)
+    except requests.exceptions.RequestException as e:
+        print(f"Error fetching image from {url}: {e}")
+
+
+def process_image(options: str) -> bool:
+    """Process the image to be used as the QR code.
+
+    Args:
+    ----
+        options (str): The options for the image source.
+
+    Returns:
+    -------
+        bool: True if the image was processed successfully, False otherwise.
+    """
+    if options.startswith("http"):
+        fetch_image_from_remote(options)
+        return True
+    return False
 
 
 if __name__ == "__main__":
     if not hasattr(PIL.Image, "Resampling"):
         PIL.Image.Resampling = PIL.Image
 
-    im = Image.open("src/assets/logo.jpg")
-    im = add_corners(im, 100)
-    im.save("src/assets/rounded-logo.png")
+    options = load_options(f"src/{OPTIONS_FILENAME}")
+    is_remote = process_image(options["image_source"])
+    color_panel = tuple(options["color_panel"])
+    filename = LOGO_FILENAME_DEFAULT if is_remote else options["image_source"]
+    if is_remote:
+        print("Image fetched successfully!")
+        im = Image.open(f"{DOWNLOADS_DIR}/{filename}")
+        im = im.crop((0, 0, min(im.size), min(im.size)))
+        im = add_corners(im, CORNER_RADIUS)
+        im.save(f"{DOWNLOADS_DIR}/{ROUNDED_LOGO_FILENAME}")
+    else:
+        im = Image.open(f"{ASSETS_DIR}/{filename}")
+        im = add_corners(im, CORNER_RADIUS)
+        im.save(f"{ASSETS_DIR}/{ROUNDED_LOGO_FILENAME}")
 
     qr = qrcode.QRCode(
         version=1,
         error_correction=qrcode.constants.ERROR_CORRECT_H,
     )
 
-    qr.add_data("https://morgankryze.github.io/Resume-LaTeX/")
+    qr.add_data(RESUME_URL)
 
     qr_img = qr.make_image(
         image_factory=StyledPilImage,
         module_drawer=RoundedModuleDrawer(),
-        embeded_image_path="src/assets/rounded-logo.png",
+        embeded_image_path=(
+            f"{DOWNLOADS_DIR}/{ROUNDED_LOGO_FILENAME}"
+            if is_remote
+            else f"{ASSETS_DIR}/{ROUNDED_LOGO_FILENAME}"
+        ),
     )
 
     qr_inner_eyes_img = qr.make_image(
         image_factory=StyledPilImage,
         eye_drawer=RoundedModuleDrawer(radius_ratio=0.9),
         color_mask=SolidFillColorMask(
-            front_color=(233, 167, 135),
+            front_color=color_panel,
         ),
     )
 
@@ -141,5 +211,5 @@ if __name__ == "__main__":
         intermediate_img,
         outer_eye_mask,
     )
-    final_image.save("qr-code.png")
-    print("Done!")
+    final_image.save(QR_CODE_FILENAME)
+    print("QR code generated successfully!")

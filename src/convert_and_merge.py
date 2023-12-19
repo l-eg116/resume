@@ -1,6 +1,6 @@
 from pathlib import Path
 
-import yaml
+from load_yaml import load_options
 from pdf2image import convert_from_path
 from PyPDF2 import PdfMerger
 
@@ -58,44 +58,6 @@ def merge_pdfs(pdfs: list, new_path: str) -> None:
     merger.close()
 
 
-def load_options(yaml_path: str) -> dict:
-    """Load options from a YAML file.
-
-    Args:
-    ----
-        yaml_path (str): The path to the YAML file.
-
-    Returns:
-    -------
-        dict: The loaded options as a dictionary.
-
-    Raises:
-    ------
-        FileNotFoundError: If the YAML file does not exist at the path provided.
-        ValueError: If the input file is not a YAML file, the YAML file is empty,
-        or the 'languages' key is not a non-empty list.
-    """
-    if not yaml_path.endswith(".yml") and not yaml_path.endswith(".yaml"):
-        msg = "The input file must be a YAML file."
-        raise ValueError(msg)
-    if not Path(yaml_path).exists():
-        msg = f"The YAML file {yaml_path} does not exist."
-        raise FileNotFoundError(msg)
-    with Path.open(yaml_path) as file:
-        options = yaml.safe_load(file)
-        if options is None:
-            msg = "The YAML file is empty."
-            raise ValueError(msg)
-        if (
-            "languages" not in options
-            or not isinstance(options["languages"], list)
-            or len(options["languages"]) == 0
-        ):
-            msg = "The 'languages' key must be a non-empty list."
-            raise ValueError(msg)
-        return options
-
-
 if __name__ == "__main__":
     pdf_to_jpg("src/resume-fr/resume.pdf", "src/resume-fr/resume")
     pdf_to_jpg("src/resume-en/resume.pdf", "src/resume-en/resume")
@@ -106,4 +68,4 @@ if __name__ == "__main__":
     if "english" in languages:
         pdfs_to_merge.append("src/resume-en/resume.pdf")
     merge_pdfs(pdfs_to_merge, "docs/pdf/resume.pdf")
-    print("Done!")
+    print("PDF files converted to jpg and merged PDF successfully!")
