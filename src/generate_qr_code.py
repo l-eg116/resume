@@ -4,11 +4,12 @@ from pathlib import Path
 import PIL
 import qrcode
 import requests
-from load_yaml import load_options
 from PIL import Image, ImageDraw
 from qrcode.image.styledpil import StyledPilImage
 from qrcode.image.styles.colormasks import SolidFillColorMask
 from qrcode.image.styles.moduledrawers import RoundedModuleDrawer
+
+from src.load_yaml import load_options
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 

@@ -4,7 +4,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
-import convert_and_merge as cv  # noqa: E402
+import src.convert_and_merge as cv  # noqa: E402
 
 
 class TestConverter(unittest.TestCase):
