@@ -1,9 +1,12 @@
+import sys
 from pathlib import Path
 
 from pdf2image import convert_from_path
 from PyPDF2 import PdfMerger
 
 from src.load_yaml import load_options
+
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 
 def pdf_to_jpg(path_pdf: str, path_jpg: str) -> None:
