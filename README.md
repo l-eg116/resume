@@ -22,7 +22,7 @@ To use this template, you can either download the zip file or clone the reposito
 git clone https://github.com/MorganKryze/Resume-LaTeX.git
 ```
 
-### Usage
+### Use
 
 Once installed, it's pretty much it, just edit the `resume.tex` file to your liking and compile it automatically with LaTeX workshop. the outcome will be a `resume.pdf` file.
 
