@@ -52,6 +52,14 @@ If you want to use the convert.py file to convert your resume to a jpg or png fi
 pip install -r requirements.txt
 ```
 
+And add the poppler package to your system.
+
+On macOs, you can install it with:
+
+```bash
+brew install poppler
+```
+
 Then, according to your os, follow the instructions [here](https://pypi.org/project/pdf2image/).
 
 Finally, you can run the script with:
