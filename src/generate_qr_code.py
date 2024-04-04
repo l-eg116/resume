@@ -17,6 +17,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 # Constants
 DOWNLOADS_DIR = "src/downloads"
 ASSETS_DIR = "src/assets"
+OUTPUT_DIR = "output"
 
 OPTIONS_FILENAME = "options.yml"
 ROUNDED_LOGO_FILENAME = "rounded-logo.png"

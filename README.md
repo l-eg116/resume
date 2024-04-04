@@ -4,9 +4,12 @@
 
 ![Resume Preview](src/resume-en/resume.jpg)
 
-![Resume Preview](qr-code.png)
+![Resume Preview](output/qr-code.png)
 
 ## Getting Started
+
+> [!NOTE]
+> The QR code and result pdf will be found in the `output/` folder.
 
 ### Prerequisites
 
@@ -79,7 +82,7 @@ image_source: https://raw.githubusercontent.com/MorganKryze/Signature-Generator/
 ```
 
 Furthermore, you can also change the color of the qr-code by changing the `color_panel` value in the options.yml file with the r, g b values of the color you want:
-  
+
 ```yml
 color_panel:
   - 0
@@ -95,4 +98,4 @@ Itself based off of [sb2nov/resume](https://github.com/sb2nov/resume/).
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE) file for details.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.

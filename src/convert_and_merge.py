@@ -70,5 +70,6 @@ if __name__ == "__main__":
         pdfs_to_merge.append("src/resume-fr/resume.pdf")
     if "english" in languages:
         pdfs_to_merge.append("src/resume-en/resume.pdf")
+    merge_pdfs(pdfs_to_merge, "output/resume.pdf")
     merge_pdfs(pdfs_to_merge, "docs/pdf/resume.pdf")
     print("PDF files converted to jpg and merged PDF successfully!")
