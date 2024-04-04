@@ -46,7 +46,7 @@ class TestConverter(unittest.TestCase):
     def test_valid_yaml_file(self: unittest) -> None:
         """Test the load_options function with a valid YAML file."""
         # Arrange
-        yaml_path = "testing/resources/options-valid.yml"
+        yaml_path = "tests/resources/options-valid.yml"
 
         # Act
         result = cv.load_options(yaml_path)
@@ -58,7 +58,7 @@ class TestConverter(unittest.TestCase):
     def test_empty_yaml_file(self: unittest) -> None:
         """Test the load_options function with an empty YAML file."""
         # Arrange
-        yaml_path = "testing/resources/options-empty.yml"
+        yaml_path = "tests/resources/options-empty.yml"
 
         # Act and Assert
         with self.assertRaises(ValueError):
