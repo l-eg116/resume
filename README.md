@@ -2,9 +2,9 @@
 
 > LaTeX easy-to-use template for tech resume that auto-build on a github page.
 
-![Resume Preview](src/resume-en/resume.jpg)
+<!-- ![Resume Preview](src/resume-en/resume.jpg) -->
 
-![Resume Preview](output/qr-code.png)
+<!-- ![Resume Preview](output/qr-code.png) -->
 
 ## Getting Started
 
@@ -22,10 +22,10 @@ Personally, I use LaTeX workshop extension for VSCode.
 To use this template, you can either download the zip file or clone the repository:
 
 ```bash
-git clone https://github.com/MorganKryze/Resume-LaTeX.git
+git clone https://github.com/l-eg116/Resume-LaTeX.git
 ```
 
-### Use
+<!-- ### Use
 
 Once installed, it's pretty much it, just edit the `resume.tex` file to your liking and compile it automatically with LaTeX workshop. the outcome will be a `resume.pdf` file.
 
@@ -88,14 +88,16 @@ color_panel:
   - 0
   - 0
   - 0
-```
+``` -->
 
 ## Fork of
 
-This fork is based off of [jakegut/resume](https://github.com/jakegut/resume).
+This fork is based off of [MorganKryze/Resume-LaTeX](https://github.com/MorganKryze/Resume-LaTeX).
+
+Itself based off of [jakegut/resume](https://github.com/jakegut/resume).
 
 Itself based off of [sb2nov/resume](https://github.com/sb2nov/resume/).
 
-## License
+<!-- ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details. -->
